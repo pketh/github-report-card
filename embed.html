@@ -1,0 +1,243 @@
+<!-- START φ(￣ー￣ )ノ -->
+<script>
+$( document ).ready(function() {
+
+  var username = 'pketh'; // **CHANGE THIS** to your github name
+    
+  var profileURL = "https://github.com/" + username;
+  $('.gh-username').html("<a href='" + profileURL + "'>" + username + "</a>");
+
+  var gistsURL = "https://gist.github.com/" + username;
+  var reposURL = "https://github.com/" + username +"?tab=repositories";
+
+  var userPath = "https://api.github.com/users/" + username;
+  var reposPath = "https://api.github.com/users/" + username + "/repos";
+  
+  var languages = [];
+  
+  // get user profile json
+  $.getJSON(userPath, function(userResult){
+    
+    // avatar pic 
+    avatar = userResult.avatar_url;
+    $('.gh-avatar').html("<a href=" + profileURL + "><img src='" + avatar + "'></a>");
+
+    // get last activity month
+    var ghMonth = parseInt(userResult.updated_at.substring(5,7));
+    // get current month
+    var d = new Date;
+    var currentMonth = d.getMonth() + 1;
+
+    // has it been a month or less since you're last activity?
+    if (ghMonth === currentMonth || ghMonth + 1 === currentMonth || ghMonth === 13 && currentMonth === 01) {
+      console.log("＼(＾▽＾*)");
+      $('.gh-recently-active').removeClass('gh-hidden');
+    };
+
+    var reposNum = userResult.public_repos;
+    $('.gh-repos').html("<a href='" + reposURL + "'>" + reposNum + " Repositories</a>")
+    var gistsNum = userResult.public_gists;
+    $('.gh-gists').html("<a href='" + gistsURL + "'>" + gistsNum + " Gists</a>")    
+  });
+     
+  // get languages for all repos from github
+  $.getJSON(reposPath, function(reposResult){
+    reposResult.forEach (function(obj){
+      if(obj.language && obj.language !== 'undefined') {
+        languages.push(obj.language)
+      }
+    });
+    var languagesSorted = languages.byCount();
+    languagesOutput = languagesSorted[0] + " , " + languagesSorted[1] + " , " + languagesSorted[2];
+    $('.gh-languages').html(languagesOutput)    
+  });
+    
+  // returns most frequent to least frequent
+  Array.prototype.byCount= function(){
+    var itm, a= [], L= this.length, o= {};
+    for(var i= 0; i<L; i++){
+      itm= this[i];
+      if(!itm) continue;
+      if(o[itm]== undefined) o[itm]= 1;
+      else ++o[itm];
+    }
+    for(var p in o) a[a.length]= p;
+    return a.sort(function(a, b){
+      return o[b]-o[a];
+    });
+  }
+});
+</script>
+
+<style>
+  .gh { /* local reset */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    line-height: 1; 
+  }
+  .gh a, .gh a:visited {
+    text-decoration: none;
+    color: #4484C2;
+  }
+  .gh a:hover {
+    text-decoration: underline;
+  }
+  .gh-report-card {
+    position: relative;
+    border: 1px solid #D8D8D8;
+    border-radius: 3px;
+    width: 153px;
+    font-family: Helvetica, arial, freesans, clean, sans-serif;
+  }
+  .gh-header {
+    background-color: #FAFAFB;
+    border-bottom: 1px solid #E5E5E5;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding-top: 12px;
+    padding-left: 11px;
+    padding-right: 11px;  
+    height: 44px;
+  }
+  .gh-avatar img {
+    width: 30px;
+    height: 30px;
+    float: left;
+    border-radius: 3px;
+  }
+  .gh-username {
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 37px;
+    padding-top: 1px;
+    margin-bottom: 4px;
+  }
+  .gh-hidden {
+    display: none;
+  } 
+  .gh-recently-active {
+    font-size: 11px;
+    color: #999999;
+    padding-left: 37px;
+  }  
+  .gh-greenbox {
+    width: 10px;
+    height: 10px;
+    background-color: #44A340;
+    border-radius: 1px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .gh-recent-txt {
+    vertical-align: middle;
+    padding-left: 1px
+  }
+  .gh-contents {
+    clear: both;
+    font-size: 13px;
+    border-bottom: 1px solid #E5E5E5;
+    padding-top: 12px;
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-bottom: 10px;
+  } 
+  .gh-repos {
+    margin-bottom: 15px;
+  }
+  .gh-languages {
+    font-size: 12px;
+    color: #999999;
+    line-height: 16px;
+    padding-top: 9px;
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-bottom: 12px
+  }
+  .gh-octocat {
+    position: absolute;
+    left:67px;
+    bottom:-16px
+  }  
+</style>
+
+<div class="gh gh-report-card">
+  <div class="gh gh-header">
+    <div class="gh gh-avatar"></div>
+    <div class="gh gh-username"></div>    
+    <div class="gh gh-recently-active gh-hidden">
+      <span class="gh gh-greenbox"></span>
+      <span class="gh gh-recent-txt">Recently Active</span>
+    </div>
+  </div>
+    
+  <div class="gh gh-contents">
+    <p class="gh gh-repos"></p>
+    <p class="gh gh-gists"></p>
+  </div>
+  
+  <div class="gh gh-languages"></div>
+  
+  <div class="gh gh-octocat">
+    <svg version="1.1" id="Octocat" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+       width="19.946px" height="22px" viewBox="0 0 19.946 22" style="enable-background:new 0 0 19.946 22;" xml:space="preserve">
+    <g>
+      <defs>
+        <path id="SVGID_1_" d="M14.302,17.708c0-1.361-0.464-2.251-0.986-2.702c3.235-0.361,6.63-1.594,6.63-7.198
+          c0-1.592-0.562-2.895-1.492-3.914c0.15-0.369,0.648-1.852-0.144-3.86c0,0-1.217-0.392-3.989,1.495
+          c-1.16-0.324-2.403-0.485-3.635-0.492C9.449,1.044,8.207,1.205,7.049,1.529C4.275-0.358,3.056,0.034,3.056,0.034
+          c-0.79,2.009-0.292,3.491-0.143,3.86C1.984,4.913,1.419,6.216,1.419,7.808c0,5.589,3.389,6.841,6.615,7.209
+          c-0.415,0.364-0.791,1.007-0.923,1.949c-0.827,0.373-2.93,1.017-4.226-1.212c0,0-0.768-1.401-2.224-1.503
+          c0,0-1.418-0.018-0.1,0.887c0,0,0.952,0.449,1.612,2.134c0,0,0.852,2.837,4.892,1.956c0.007,1.217,0.02,2.135,0.02,2.48
+          c0,0.387,7.2,0.39,7.2,0C14.285,21.23,14.302,19.657,14.302,17.708z"/>
+      </defs>
+      <clipPath id="SVGID_2_">
+        <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+      </clipPath>
+        <rect x="-5" y="-5" style="clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#D8D8D8;" width="29.946" height="32"/>
+    </g>
+    </svg>
+  </div>
+</div>
+
+<!-- END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
