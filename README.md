@@ -1,6 +1,6 @@
 # Github Report Card
 
-![](https://dl.dropboxusercontent.com/u/366007/Cargo/gh-report-card.png)
+![](https://dl.dropboxusercontent.com/u/366007/Cargo/gh-report-card2.png)
 
 The Github Report Card let's you display a summary of your Github profile on your own page. Handy on portfolios, web-resumes, and weblogs. 
 
