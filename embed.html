@@ -19,7 +19,7 @@ $( document ).ready(function() {
   // get user profile json
   $.getJSON(userPath, function(userResult){
 
-    // avatar pic 
+    // avatar pic
     avatar = userResult.avatar_url;
     $('.gh-avatar').html("<a href=" + profileURL + "><img src='" + avatar + "'></a>");
 
@@ -38,7 +38,7 @@ $( document ).ready(function() {
     var reposNum = userResult.public_repos;
     $('.gh-repos').html("<a href='" + reposURL + "'>" + reposNum + " Repositories</a>")
     var gistsNum = userResult.public_gists;
-    $('.gh-gists').html("<a href='" + gistsURL + "'>" + gistsNum + " Gists</a>")    
+    $('.gh-gists').html("<a href='" + gistsURL + "'>" + gistsNum + " Gists</a>")
   });
 
   // get languages for all repos from github
@@ -49,8 +49,8 @@ $( document ).ready(function() {
       }
     });
     var languagesSorted = languages.byCount();
-    languagesOutput = languagesSorted[0] + " , " + languagesSorted[1] + " , " + languagesSorted[2];
-    $('.gh-languages').html(languagesOutput)    
+    languagesOutput = languagesSorted[0] + ", " + languagesSorted[1] + ", " + languagesSorted[2];
+    $('.gh-languages').html(languagesOutput)
   });
 
   // returns most frequent to least frequent
@@ -80,7 +80,7 @@ $( document ).ready(function() {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    line-height: 1; 
+    line-height: 1;
   }
   .gh a, .gh a:visited {
     text-decoration: none;
@@ -103,14 +103,14 @@ $( document ).ready(function() {
     border-top-right-radius: 6px;
     padding-top: 6px;
     padding-left: 11px;
-    padding-right: 11px;  
+    padding-right: 11px;
     padding-bottom: 11px
   }
 
   .gh-octocat {
     display: inline-block;
     margin-bottom: 8px;
-  }  
+  }
 
   .gh-title {
     font-weight: bold;
@@ -135,12 +135,12 @@ $( document ).ready(function() {
   }
   .gh-hidden {
     display: none;
-  } 
+  }
   .gh-recently-active {
     font-size: 11px;
     color: #999999;
     padding-left: 37px;
-  }  
+  }
   .gh-greenbox {
     width: 10px;
     height: 10px;
@@ -161,7 +161,7 @@ $( document ).ready(function() {
     padding-left: 11px;
     padding-right: 11px;
     padding-bottom: 9px;
-  } 
+  }
   .gh-repos {
     margin-bottom: 15px;
   }
@@ -180,7 +180,7 @@ $( document ).ready(function() {
 <div class="gh gh-report-card">
   <div class="gh gh-header">
 
-    <div class="gh gh-octocat">      
+    <div class="gh gh-octocat">
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          width="21.292px" height="22px" viewBox="0 0 21.292 22" style="enable-background:new 0 0 21.292 22;" xml:space="preserve">
       <g>
@@ -233,7 +233,7 @@ $( document ).ready(function() {
     <span class="gh-title">Github Report</span>
 
     <div class="gh gh-avatar"></div>
-    <div class="gh gh-username"></div>    
+    <div class="gh gh-username"></div>
     <div class="gh gh-recently-active gh-hidden">
       <span class="gh gh-greenbox"></span>
       <span class="gh gh-recent-txt">Recently Active</span>

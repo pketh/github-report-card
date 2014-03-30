@@ -13,13 +13,13 @@
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> <!-- switch to cdn *** -->
 </head>
 <body>
-  
+
 <!-- START φ(￣ー￣ )ノ -->
 <script>
 $( document ).ready(function() {
 
   var username = 'pketh'; // CHANGE THIS to your github name
-    
+
   var profileURL = "https://github.com/" + username;
   $('.gh-username').html("<a href='" + profileURL + "'>" + username + "</a>");
 
@@ -28,13 +28,13 @@ $( document ).ready(function() {
 
   var userPath = "https://api.github.com/users/" + username;
   var reposPath = "https://api.github.com/users/" + username + "/repos";
-  
+
   var languages = [];
-  
+
   // get user profile json
   $.getJSON(userPath, function(userResult){
-    
-    // avatar pic 
+
+    // avatar pic
     avatar = userResult.avatar_url;
     $('.gh-avatar').html("<a href=" + profileURL + "><img src='" + avatar + "'></a>");
 
@@ -53,9 +53,9 @@ $( document ).ready(function() {
     var reposNum = userResult.public_repos;
     $('.gh-repos').html("<a href='" + reposURL + "'>" + reposNum + " Repositories</a>")
     var gistsNum = userResult.public_gists;
-    $('.gh-gists').html("<a href='" + gistsURL + "'>" + gistsNum + " Gists</a>")    
+    $('.gh-gists').html("<a href='" + gistsURL + "'>" + gistsNum + " Gists</a>")
   });
-     
+
   // get languages for all repos from github
   $.getJSON(reposPath, function(reposResult){
     reposResult.forEach (function(obj){
@@ -64,10 +64,10 @@ $( document ).ready(function() {
       }
     });
     var languagesSorted = languages.byCount();
-    languagesOutput = languagesSorted[0] + " , " + languagesSorted[1] + " , " + languagesSorted[2];
-    $('.gh-languages').html(languagesOutput)    
+    languagesOutput = languagesSorted[0] + ", " + languagesSorted[1] + ", " + languagesSorted[2];
+    $('.gh-languages').html(languagesOutput)
   });
-    
+
   // returns most frequent to least frequent
   Array.prototype.byCount= function(){
     var itm, a= [], L= this.length, o= {};
@@ -82,7 +82,7 @@ $( document ).ready(function() {
       return o[b]-o[a];
     });
   }
-  
+
 });
 </script>
 
@@ -95,7 +95,7 @@ $( document ).ready(function() {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    line-height: 1; 
+    line-height: 1;
   }
   .gh a, .gh a:visited {
     text-decoration: none;
@@ -118,15 +118,15 @@ $( document ).ready(function() {
     border-top-right-radius: 6px;
     padding-top: 6px;
     padding-left: 11px;
-    padding-right: 11px;  
+    padding-right: 11px;
     padding-bottom: 11px
   }
-  
+
   .gh-octocat {
     display: inline-block;
     margin-bottom: 8px;
-  }  
-  
+  }
+
   .gh-title {
     font-weight: bold;
     font-size: 11px;
@@ -134,7 +134,7 @@ $( document ).ready(function() {
     vertical-align: 65%;
     padding-left: 2px
   }
-  
+
   .gh-avatar img {
     width: 30px;
     height: 30px;
@@ -150,12 +150,12 @@ $( document ).ready(function() {
   }
   .gh-hidden {
     display: none;
-  } 
+  }
   .gh-recently-active {
     font-size: 11px;
     color: #999999;
     padding-left: 37px;
-  }  
+  }
   .gh-greenbox {
     width: 10px;
     height: 10px;
@@ -176,7 +176,7 @@ $( document ).ready(function() {
     padding-left: 11px;
     padding-right: 11px;
     padding-bottom: 9px;
-  } 
+  }
   .gh-repos {
     margin-bottom: 15px;
   }
@@ -194,8 +194,8 @@ $( document ).ready(function() {
 
 <div class="gh gh-report-card">
   <div class="gh gh-header">
-  
-    <div class="gh gh-octocat">      
+
+    <div class="gh gh-octocat">
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          width="21.292px" height="22px" viewBox="0 0 21.292 22" style="enable-background:new 0 0 21.292 22;" xml:space="preserve">
       <g>
@@ -212,7 +212,7 @@ $( document ).ready(function() {
           <clipPath id="SVGID_4_">
             <use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
           </clipPath>
-      
+
             <rect x="-4.708" y="-5" style="clip-path:url(#SVGID_4_);fill-rule:evenodd;clip-rule:evenodd;fill:#FAFAFB;" width="30.842" height="32"/>
         </g>
       </g>
@@ -238,7 +238,7 @@ $( document ).ready(function() {
           <clipPath id="SVGID_8_">
             <use xlink:href="#SVGID_7_"  style="overflow:visible;"/>
           </clipPath>
-      
+
             <rect x="-4.708" y="-5" style="clip-path:url(#SVGID_8_);fill-rule:evenodd;clip-rule:evenodd;fill:#767676;" width="30.842" height="30.842"/>
         </g>
       </g>
@@ -246,22 +246,22 @@ $( document ).ready(function() {
       </div>
 
     <span class="gh-title">Github Report</span>
-    
+
     <div class="gh gh-avatar"></div>
-    <div class="gh gh-username"></div>    
+    <div class="gh gh-username"></div>
     <div class="gh gh-recently-active gh-hidden">
       <span class="gh gh-greenbox"></span>
       <span class="gh gh-recent-txt">Recently Active</span>
     </div>
   </div>
-    
+
   <div class="gh gh-contents">
     <p class="gh gh-repos"></p>
     <p class="gh gh-gists"></p>
   </div>
-  
+
   <div class="gh gh-languages"></div>
-  
+
 
 </div>
 
