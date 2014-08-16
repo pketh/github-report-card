@@ -1,13 +1,13 @@
 # Github Report Card
 
-![](https://dl.dropboxusercontent.com/u/366007/Cargo/gh-report-card2.png)
+![](https://dl.dropboxusercontent.com/u/366007/Cargo/gh-report-card3.png)
 
 The Github Report Card let's you display a summary of your Github profile on your own page. Handy on portfolios, web-resumes, and weblogs. 
 
 Here's a [live example](http://pketh.org/About-me)
  
 ## To Embed
-1. Add the report card to your website by copying the code.
+1. Add the report card to your website by embedding the html where you want it.
 2. In the script, change the username variable to your Github username.
 
 ## Dependencies
