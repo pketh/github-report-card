@@ -12,6 +12,12 @@ $( document ).ready(function() {
   var reposPath = "https://api.github.com/users/" + username + "/repos";
 
   var languages = [];
+  // there is something similar in
+  // https://github.com/doda/github-language-colors/blob/master/build.py
+  var languageNameMapping = {
+      'C++': 'cpp',
+      'C#': 'C Sharp',
+  }
 
   // get user profile json
   $.getJSON(userPath, function(userResult){
@@ -72,9 +78,16 @@ $( document ).ready(function() {
 
     function getLanguageColor(languageName) {
       console.log('fetching color for ' + languageName);
-      console.log('color is ' + githubLanguageColors[languageName]);
-
-      return githubLanguageColors[languageName];
+      var color = githubLanguageColors[languageName]
+      if (color) {
+          console.log('color is ' + githubLanguageColors[languageName]);
+          return githubLanguageColors[languageName];
+      } else {
+          // language not found, try synonym
+          console.log('color for ' + languageName + ' is ' + githubLanguageColors[languageName]);
+          languageName = languageNameMapping[languageName];
+          return githubLanguageColors[languageName];
+      }
     }
 
   });
