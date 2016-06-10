@@ -51,8 +51,8 @@ $( document ).ready(function() {
         languages.push(obj.language)
       }
     });
-    var maxNumberOfLanguages = getMaxLanguages(languages);
     var languagesSorted = languages.byCount();
+    var maxNumberOfLanguages = getMaxLanguages(languagesSorted);
 
     for (var i = 0; i < maxNumberOfLanguages; i++) {
       var languagesOutput;
