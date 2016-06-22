@@ -24,7 +24,7 @@ $( document ).ready(function() {
 
     // avatar pic
     var avatar = userResult.avatar_url;
-    $('.gh-avatar').html("<a href=" + profileURL + "><img src='" + avatar + "'></a>");
+    $('.gh-avatar').html("<a href=" + profileURL + "><img src='" + avatar + "' alt='github avatar'></a>");
 
     // get last activity month
     var ghMonth = parseInt(userResult.updated_at.substring(5,7));
